@@ -1,7 +1,7 @@
 (set-env! :dependencies '[[org.clojure/clojure "1.6.0" :scope "provided"]
                           [boot/core "2.0.0-rc14" :scope "provided"]
                           [adzerk/bootlaces "0.1.11" :scope "test"]
-                          [org.jetbrains.kotlin/kotlin-compiler "0.11.91.4" :scope "test"]])
+                          [org.jetbrains.kotlin/kotlin-compiler "0.11.91.4" :scope "provided"]])
 
 (require '[adzerk.bootlaces :refer :all])
 
