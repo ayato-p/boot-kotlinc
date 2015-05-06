@@ -1,7 +1,8 @@
 (ns ayato_p.boot-kotlinc
   {:boot/export-tasks true}
   (:require [boot.core :as core]
-            [boot.pod :as pod])
+            [boot.pod :as pod]
+            [boot.util :as util])
   (:import [java.io File]
            [java.util Arrays]
            [org.jetbrains.kotlin.cli.jvm K2JVMCompiler]))
@@ -23,5 +24,7 @@
             srcs (some->> (core/input-files fileset)
                           (core/by-ext [".kt"])
                           (map #(.getPath (core/tmp-file %))))]
-        (K2JVMCompiler/main (into-array String (concat opts srcs))))
+        (when srcs
+          (util/info "Compiling %d Kotlin source files...\n" (count srcs))
+          (K2JVMCompiler/main (into-array String (concat opts srcs)))))
       (-> fileset (core/add-resource tgt) core/commit!))))
